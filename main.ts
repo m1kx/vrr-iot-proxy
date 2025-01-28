@@ -19,7 +19,6 @@ Deno.serve(async (req: Request) => {
   }
   const data: PlanResponse = await res.json();
 
-  console.log(data.stopEvents.length)
   return new Response(JSON.stringify({
     success: true,
     data: {
@@ -27,7 +26,8 @@ Deno.serve(async (req: Request) => {
         departureTimePlanned: event.departureTimePlanned,
         departureTimeEstimated: event.departureTimeEstimated,
         name: event.transportation.disassembledName,
-        destination: event.transportation.destination.name
+        destination: event.transportation.destination.name,
+        platform: event.location.properties.platform,
       })),
     },
   }), { status: 200 });

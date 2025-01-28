@@ -28,7 +28,7 @@ Deno.serve(async (req: Request) => {
         name: event.transportation.disassembledName,
         destination: event.transportation.destination.name,
         platform: event.location.properties.platform,
-      })),
+      })).sort((a, b) => (a.departureTimeEstimated ?? a.departureTimePlanned).localeCompare(b.departureTimeEstimated ?? b.departureTimePlanned)),
     },
   }), { status: 200 });
 })
